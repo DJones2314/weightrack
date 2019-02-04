@@ -22,14 +22,14 @@ import com.jones.dave.model.dataModelQuestion;
 
 @RestController
 @RequestMapping("/api")
-
+@CrossOrigin
 public class dataControllerQuestion {
 
 	@Autowired
 	weightRepository myRepository;
 	
 	// Method to get all the questions posted 
-		@CrossOrigin
+		
 		@GetMapping("/questions")
 		public List<dataModelQuestion> getAllQuestions() {
 			return myRepository.findAll();

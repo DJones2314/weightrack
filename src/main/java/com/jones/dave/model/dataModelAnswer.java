@@ -12,7 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "question")
+@Table(name = "answer")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = { "creationDate", "lastModified"}, allowGetters = true)
 
