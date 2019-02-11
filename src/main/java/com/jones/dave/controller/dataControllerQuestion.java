@@ -43,16 +43,16 @@ public class dataControllerQuestion {
 
 		// Method to get a question
 		@GetMapping("question/{id}")
-		public dataModelQuestion getQuestionByID(@PathVariable(value = "id") int questionID) {
+		public dataModelQuestion getQuestionByID(@PathVariable(value = "id") Long questionID) {
 			return myRepository.findById(questionID)
 					.orElseThrow(() -> new ResourceNotFoundException("dataModelQuestion", "id", questionID));
 		}
 		
-		@GetMapping("question/category/{type}")
-		public List<dataModelQuestion> findByQuestionType(@PathVariable(value = "type") String type) {
-			return myRepository.findByType(type);
-					//.orElseThrow(() -> new ResourceNotFoundException("dataModelQuestion", "type", questionType));
-		}
+//		@GetMapping("question/category/{type}")
+//		public List<dataModelQuestion> findByQuestionType(@PathVariable(value = "type") String type) {
+//			return myRepository.findByType(type);
+//					//.orElseThrow(() -> new ResourceNotFoundException("dataModelQuestion", "type", questionType));
+//		}
 
 //		// Method to get all questions
 //		@GetMapping("/question")
@@ -69,7 +69,7 @@ public class dataControllerQuestion {
 					.orElseThrow(() -> new ResourceNotFoundException("Question", "id", questionID));
 
 			mSDM.setDetail(questionDetails.getDetail());
-			mSDM.setDatetime(questionDetails.getDatetime());
+//			mSDM.setDatetime(questionDetails.getDatetime());
 			mSDM.setName(questionDetails.getName());
 
 			dataModelQuestion updateData = myRepository.save(mSDM); 

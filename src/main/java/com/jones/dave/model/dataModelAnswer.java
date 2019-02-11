@@ -3,10 +3,11 @@ package com.jones.dave.model;
 import java.io.Serializable;
 import java.util.Date;
 
+
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,16 +20,25 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class dataModelAnswer implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "answer_ID")
-	private int answer_ID;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "answer_id")
+	private Long answer_id;
 	
-	@NotBlank
-	@Column(name = "question_ID")
-	private int question_ID;
 	
-	@Lob
-	@NotBlank
+	@Column(name = "question_id")
+	private Long question_id;
+	
+	public dataModelAnswer() {
+	}
+	
+	public dataModelAnswer(Long answer_id, Long question_id, String answer_detail, String answer_name, String answer_email) {
+		this.answer_id = answer_id;
+		this.question_id = question_id;
+		this.answer_detail = answer_detail;
+		this.answer_email = answer_email;
+		this.answer_name = answer_name;
+	}
+	
 	@Column(name = "answer_detail")
 	private String answer_detail;
 	
@@ -37,30 +47,21 @@ public class dataModelAnswer implements Serializable{
 
 	@Column(name = "answer_email")
 	private String answer_email;
-	
-	@Column(name ="answer_datetime")
-	private String answer_datetime;
-	
-	@Column(name = "answer_view")
-	private int answer_view;
-	
-	@Column(name = "answer_reply")
-	private int answer_reply;
 
-	public int getAnswer_ID() {
-		return answer_ID;
+	public Long getAnswer_id() {
+		return answer_id;
 	}
 
-	public void setAnswer_ID(int answer_ID) {
-		this.answer_ID = answer_ID;
+	public void setAnswer_id(Long answer_id) {
+		this.answer_id = answer_id;
 	}
 
-	public int getQuestion_ID() {
-		return question_ID;
+	public Long getQuestion_id() {
+		return question_id;
 	}
 
-	public void setQuestion_ID(int question_ID) {
-		this.question_ID = question_ID;
+	public void setQuestion_id(Long question_id) {
+		this.question_id = question_id;
 	}
 
 	public String getAnswer_detail() {
@@ -86,31 +87,5 @@ public class dataModelAnswer implements Serializable{
 	public void setAnswer_email(String answer_email) {
 		this.answer_email = answer_email;
 	}
-
-	public String getAnswer_datetime() {
-		return answer_datetime;
-	}
-
-	public void setAnswer_datetime(String answer_datetime) {
-		this.answer_datetime = answer_datetime;
-	}
-
-	public int getAnswer_view() {
-		return answer_view;
-	}
-
-	public void setAnswer_view(int answer_view) {
-		this.answer_view = answer_view;
-	}
-
-	public int getAnswer_reply() {
-		return answer_reply;
-	}
-
-	public void setAnswer_reply(int answer_reply) {
-		this.answer_reply = answer_reply;
-	}
-
-	
 
 }

@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jones.dave.Repository.weightRepositoryAnswer;
+import com.jones.dave.Repository.weightRepositoryAnswerimpl;
 import com.jones.dave.exception.ResourceNotFoundException;
 import com.jones.dave.model.dataModelAnswer;
 import com.jones.dave.model.dataModelQuestion;
@@ -29,7 +30,7 @@ import com.jones.dave.model.dataModelQuestion;
 public class dataControllerAnswer {
 
 	@Autowired
-	weightRepositoryAnswer myRepository;
+	weightRepositoryAnswerimpl myRepository;
 	
 	// Method to get all the answers posted 
 		
@@ -43,18 +44,18 @@ public class dataControllerAnswer {
 			return myRepository.save(mSDM); 
 		}
 
-		// Method to get an answer
-		@GetMapping("answer/{id}")
-		public dataModelAnswer getAnswerByID(@PathVariable(value = "id") int answerID) {
+//		 Method to get an answer
+		@GetMapping("answer/{answer_id}")
+		public dataModelAnswer getAnswerByID(@PathVariable(value = "answer_id") Long answerID) {
 			return myRepository.findById(answerID)
-					.orElseThrow(() -> new ResourceNotFoundException("dataModelAnswer", "id", answerID));
+					.orElseThrow(() -> new ResourceNotFoundException("dataModelAnswer", "answer_id", answerID));
 		}
 		
-		@GetMapping("answer/category/{type}")
-		public List<dataModelAnswer> findByAnswerType(@PathVariable(value = "type") String type) {
-			return myRepository.findByType(type);
-					//.orElseThrow(() -> new ResourceNotFoundException("dataModelAnswer", "type", answerType));
-		}
+//		@GetMapping("answer/category/{type}")
+//		public List<dataModelAnswer> findByAnswerType(@PathVariable(value = "type") String type) {
+//			return myRepository.findByType(type);
+//					//.orElseThrow(() -> new ResourceNotFoundException("dataModelAnswer", "type", answerType));
+//		}
 
 //		// Method to get all answers
 //		@GetMapping("/answer")
@@ -71,7 +72,7 @@ public class dataControllerAnswer {
 					.orElseThrow(() -> new ResourceNotFoundException("Answer", "id", answerID));
 
 			mSDM.setAnswer_detail(answerDetails.getAnswer_detail());
-			mSDM.setAnswer_datetime(answerDetails.getAnswer_datetime());
+//			mSDM.setAnswer_datetime(answerDetails.getAnswer_datetime());
 			mSDM.setAnswer_name(answerDetails.getAnswer_name());
 
 			dataModelAnswer updateData = myRepository.save(mSDM); 
@@ -79,16 +80,27 @@ public class dataControllerAnswer {
 	 
 		}
 
+		// Method to remove a question
+				@DeleteMapping("/answer/{id}")
+				public ResponseEntity<?> deleteQuestion(@PathVariable(value = "id") Long answer_id) {
+					dataModelAnswer mSDM = myRepository.findById(answer_id)
+							.orElseThrow(() -> new ResourceNotFoundException("Question", "id", answer_id));
+
+					myRepository.delete(mSDM);
+					return ResponseEntity.ok().build();
+
+				}
+		
 		// Method to remove an answer
-		@DeleteMapping("/answer/{id}")
-		public ResponseEntity<?> deleteAnswer(@PathVariable(value = "id") Long answerID) {
-			dataModelAnswer mSDM = myRepository.findById(answerID)
-					.orElseThrow(() -> new ResourceNotFoundException("Answer", "id", answerID));
-
-			myRepository.delete(mSDM);
-			return ResponseEntity.ok().build();
-
-		}
+//		@DeleteMapping("/answer/{id}")
+//		public ResponseEntity<?> deleteAnswer(@PathVariable(value = "answer_id") Long answer_id) {
+//			dataModelAnswer mSDM = myRepository.findById(answer_id)
+//					.orElseThrow(() -> new ResourceNotFoundException("Answer", "answer_id", answer_id));
+//
+//			myRepository.delete(mSDM);
+//			return ResponseEntity.ok().build();
+//
+//		}
 
 		
 }

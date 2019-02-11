@@ -11,9 +11,9 @@ import com.jones.dave.model.dataModelQuestion;
 @Repository
 public interface weightRepositoryQuestion extends JpaRepository<dataModelQuestion, Long>{
 
-	Optional<dataModelQuestion> findById(int questionID);
+	Optional<dataModelQuestion> findById(Long id);
 
-	List<dataModelQuestion> findByType(String type);
+//	List<dataModelQuestion> findByType(String type);
 
 	
 	

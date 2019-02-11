@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 import com.jones.dave.model.dataModelAnswer;
 
 @Repository
-public interface weightRepositoryAnswer extends JpaRepository<dataModelAnswer, Long>{
+public interface weightRepositoryAnswerimpl extends JpaRepository<dataModelAnswer, Long>{
 
-	Optional<dataModelAnswer> findById(int questionID);
-
-	List<dataModelAnswer> findByType(String type);
+//	Optional<dataModelAnswer> findById(Long questionID);
+//
+//	List<dataModelAnswer> findByType(String type);
 
 	
 	
