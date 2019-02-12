@@ -51,18 +51,6 @@ public class dataControllerAnswer {
 					.orElseThrow(() -> new ResourceNotFoundException("dataModelAnswer", "answer_id", answerID));
 		}
 		
-//		@GetMapping("answer/category/{type}")
-//		public List<dataModelAnswer> findByAnswerType(@PathVariable(value = "type") String type) {
-//			return myRepository.findByType(type);
-//					//.orElseThrow(() -> new ResourceNotFoundException("dataModelAnswer", "type", answerType));
-//		}
-
-//		// Method to get all answers
-//		@GetMapping("/answer")
-//		public List<dataModelAnswer> getAllAnswers() {
-//			return myRepository.findAll(); 
-//
-//		}
 
 		// Method to update/edit an answer
 		@PutMapping("/answer/{id}")
@@ -71,16 +59,15 @@ public class dataControllerAnswer {
 			dataModelAnswer mSDM = myRepository.findById(answerID)
 					.orElseThrow(() -> new ResourceNotFoundException("Answer", "id", answerID));
 
-			mSDM.setAnswer_detail(answerDetails.getAnswer_detail());
-//			mSDM.setAnswer_datetime(answerDetails.getAnswer_datetime());
-			mSDM.setAnswer_name(answerDetails.getAnswer_name());
+			mSDM.setAnswerdetail(answerDetails.getAnswerdetail());
+			mSDM.setAnswername(answerDetails.getAnswername());
 
 			dataModelAnswer updateData = myRepository.save(mSDM); 
 			return updateData;
 	 
 		}
 
-		// Method to remove a question
+		// Method to remove an answer
 				@DeleteMapping("/answer/{id}")
 				public ResponseEntity<?> deleteQuestion(@PathVariable(value = "id") Long answer_id) {
 					dataModelAnswer mSDM = myRepository.findById(answer_id)
@@ -91,16 +78,7 @@ public class dataControllerAnswer {
 
 				}
 		
-		// Method to remove an answer
-//		@DeleteMapping("/answer/{id}")
-//		public ResponseEntity<?> deleteAnswer(@PathVariable(value = "answer_id") Long answer_id) {
-//			dataModelAnswer mSDM = myRepository.findById(answer_id)
-//					.orElseThrow(() -> new ResourceNotFoundException("Answer", "answer_id", answer_id));
-//
-//			myRepository.delete(mSDM);
-//			return ResponseEntity.ok().build();
-//
-//		}
+		
 
 		
 }

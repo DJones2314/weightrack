@@ -30,25 +30,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class dataModelQuestion implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "questionID")
+	private Long questionID;
 	
-//	private Long answer_id;
-	
-//	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	private Set<dataModelAnswer>answer;
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "question_id", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "answerID", cascade = CascadeType.ALL)
 	private Collection<dataModelAnswer> answers = new LinkedHashSet<dataModelAnswer>();
 	
 	public dataModelQuestion() {
 	}
 
-	public dataModelQuestion( Long id, /*Long answer_id*/ String email, String name, String detail) {
-		this.id = id;
-//		this.answer_id = answer_id;
-		this.email = answers.
+	public dataModelQuestion( Long questionID, String email, String name, String detail) {
+		this.questionID = questionID;
+		this.email = email;
 		this.name = name;
 		this.detail = detail;
 	}
@@ -62,12 +56,20 @@ public class dataModelQuestion implements Serializable{
 	@Column(name = "email")
 	private String email;
 	
-	public Long getId() {
-		return id;
+	public Long getQuestionID() {
+		return questionID;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setQuestionID(Long questionID) {
+		this.questionID = questionID;
+	}
+
+	public Collection<dataModelAnswer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(Collection<dataModelAnswer> answers) {
+		this.answers = answers;
 	}
 
 	public String getDetail() {
@@ -93,14 +95,6 @@ public class dataModelQuestion implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-//	public Long getAnswer_id() {
-//		return answer_id;
-//	}
-//
-//	public void setAnswer_id(Long answer_id) {
-//		this.answer_id = answer_id;
-//	}
 
 
 }

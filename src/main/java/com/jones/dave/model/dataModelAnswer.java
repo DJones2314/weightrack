@@ -20,72 +20,74 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class dataModelAnswer implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "answer_id")
-	private Long answer_id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "answerID")
+	private Long answerID;
 	
 	
-	@Column(name = "question_id")
-	private Long question_id;
+	@Column(name = "questionID")
+	private Long questionID;
 	
 	public dataModelAnswer() {
 	}
 	
-	public dataModelAnswer(Long answer_id, Long question_id, String answer_detail, String answer_name, String answer_email) {
-		this.answer_id = answer_id;
-		this.question_id = question_id;
-		this.answer_detail = answer_detail;
-		this.answer_email = answer_email;
-		this.answer_name = answer_name;
+	public dataModelAnswer(Long answerID, Long questionID, String answerdetail, String answername, String answeremail) {
+		this.answerID = answerID;
+		this.questionID = questionID;
+		this.answerdetail = answerdetail;
+		this.answeremail = answeremail;
+		this.answername = answername;
 	}
 	
-	@Column(name = "answer_detail")
-	private String answer_detail;
+	@Column(name = "answerdetail")
+	private String answerdetail;
 	
-	@Column(name = "answer_name")
-	private String answer_name;
+	@Column(name = "answername")
+	private String answername;
 
-	@Column(name = "answer_email")
-	private String answer_email;
+	@Column(name = "answeremail")
+	private String answeremail;
 
-	public Long getAnswer_id() {
-		return answer_id;
+	public Long getAnswerID() {
+		return answerID;
 	}
 
-	public void setAnswer_id(Long answer_id) {
-		this.answer_id = answer_id;
+	public void setAnswerID(Long answerID) {
+		this.answerID = answerID;
 	}
 
-	public Long getQuestion_id() {
-		return question_id;
+	public Long getQuestionID() {
+		return questionID;
 	}
 
-	public void setQuestion_id(Long question_id) {
-		this.question_id = question_id;
+	public void setQuestionID(Long questionID) {
+		this.questionID = questionID;
 	}
 
-	public String getAnswer_detail() {
-		return answer_detail;
+	public String getAnswerdetail() {
+		return answerdetail;
 	}
 
-	public void setAnswer_detail(String answer_detail) {
-		this.answer_detail = answer_detail;
+	public void setAnswerdetail(String answerdetail) {
+		this.answerdetail = answerdetail;
 	}
 
-	public String getAnswer_name() {
-		return answer_name;
+	public String getAnswername() {
+		return answername;
 	}
 
-	public void setAnswer_name(String answer_name) {
-		this.answer_name = answer_name;
+	public void setAnswername(String answername) {
+		this.answername = answername;
 	}
 
-	public String getAnswer_email() {
-		return answer_email;
+	public String getAnsweremail() {
+		return answeremail;
 	}
 
-	public void setAnswer_email(String answer_email) {
-		this.answer_email = answer_email;
+	public void setAnsweremail(String answeremail) {
+		this.answeremail = answeremail;
 	}
+
+	
 
 }
