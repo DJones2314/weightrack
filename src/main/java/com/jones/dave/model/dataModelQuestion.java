@@ -34,18 +34,19 @@ public class dataModelQuestion implements Serializable{
 	@Column(name = "questionID")
 	private Long questionID;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "answerID", cascade = CascadeType.ALL)
-	private Collection<dataModelAnswer> answers = new LinkedHashSet<dataModelAnswer>();
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "questionID", cascade = CascadeType.ALL)
+	private Collection<dataModelAnswer> answers = new LinkedHashSet<dataModelAnswer>(); 
 	
 	public dataModelQuestion() {
 	}
-
+ 
 	public dataModelQuestion( Long questionID, String email, String name, String detail) {
 		this.questionID = questionID;
 		this.email = email;
 		this.name = name;
 		this.detail = detail;
 	}
+	
 	
 	@Column(name = "detail")
 	private String detail;

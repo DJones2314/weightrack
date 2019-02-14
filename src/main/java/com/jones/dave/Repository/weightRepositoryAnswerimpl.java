@@ -11,7 +11,7 @@ import com.jones.dave.model.dataModelAnswer;
 @Repository
 public interface weightRepositoryAnswerimpl extends JpaRepository<dataModelAnswer, Long>{
 
-//	Optional<dataModelAnswer> findById(Long questionID);
+	Optional<dataModelAnswer> findById(Long questionID);
 //
 //	List<dataModelAnswer> findByType(String type);
 

@@ -26,19 +26,27 @@ public class dataModelAnswer implements Serializable{
 	
 	
 	@Column(name = "questionID")
-	private Long questionID;
+	private Integer questionID;
 	
 	public dataModelAnswer() {
 	}
 	
-	public dataModelAnswer(Long answerID, Long questionID, String answerdetail, String answername, String answeremail) {
+	public dataModelAnswer(Long answerID, Integer questionID, String answerdetail, String answername, String answeremail) {
 		this.answerID = answerID;
 		this.questionID = questionID;
 		this.answerdetail = answerdetail;
 		this.answeremail = answeremail;
 		this.answername = answername;
 	}
+	 
 	
+	
+	public dataModelAnswer(long l, Long questionID2, String string, String string2, String string3) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	@Column(name = "answerdetail")
 	private String answerdetail;
 	
@@ -56,11 +64,11 @@ public class dataModelAnswer implements Serializable{
 		this.answerID = answerID;
 	}
 
-	public Long getQuestionID() {
+	public Integer getQuestionID() {
 		return questionID;
 	}
 
-	public void setQuestionID(Long questionID) {
+	public void setQuestionID(Integer questionID) {
 		this.questionID = questionID;
 	}
 

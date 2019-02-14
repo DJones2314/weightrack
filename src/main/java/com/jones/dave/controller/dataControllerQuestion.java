@@ -43,7 +43,7 @@ public class dataControllerQuestion {
 
 		// Method to get a question
 		@GetMapping("question/{id}")
-		public dataModelQuestion getQuestionByID(@PathVariable(value = "id") Long questionID) {
+		public dataModelQuestion getQuestionByID(@PathVariable(value = "questionID") Long questionID) {
 			return myRepository.findById(questionID)
 					.orElseThrow(() -> new ResourceNotFoundException("dataModelQuestion", "id", questionID));
 		}
