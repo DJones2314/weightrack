@@ -16,23 +16,77 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jones.dave.Repository.weightRepository;
+import com.jones.dave.Repository.weightRepositoryQuestion;
+import com.jones.dave.exception.ResourceNotFoundException;
 import com.jones.dave.model.dataModelQuestion;
 
 
 @RestController
 @RequestMapping("/api")
-
+@CrossOrigin
 public class dataControllerQuestion {
 
 	@Autowired
-	weightRepository myRepository;
+	weightRepositoryQuestion myRepository;
 	
 	// Method to get all the questions posted 
-		@CrossOrigin
+		
 		@GetMapping("/questions")
 		public List<dataModelQuestion> getAllQuestions() {
 			return myRepository.findAll();
 		}
 	
+		@PostMapping("/question")
+		public dataModelQuestion createQuestion(@Valid @RequestBody dataModelQuestion mSDM) {
+			return myRepository.save(mSDM); 
+		}
+
+		// Method to get a question
+		@GetMapping("question/{id}")
+		public dataModelQuestion getQuestionByID(@PathVariable(value = "questionID") Long questionID) {
+			return myRepository.findById(questionID)
+					.orElseThrow(() -> new ResourceNotFoundException("dataModelQuestion", "id", questionID));
+		}
+		
+//		@GetMapping("question/category/{type}")
+//		public List<dataModelQuestion> findByQuestionType(@PathVariable(value = "type") String type) {
+//			return myRepository.findByType(type);
+//					//.orElseThrow(() -> new ResourceNotFoundException("dataModelQuestion", "type", questionType));
+//		}
+
+//		// Method to get all questions
+//		@GetMapping("/question")
+//		public List<dataModelQuestion> getAllQuestions() {
+//			return myRepository.findAll(); 
+//
+//		}
+
+		// Method to update/edit a question
+		@PutMapping("/question/{id}")
+		public dataModelQuestion updateQuestion(@PathVariable(value = "id") Long questionID,
+				@Valid @RequestBody dataModelQuestion questionDetails) {
+			dataModelQuestion mSDM = myRepository.findById(questionID)
+					.orElseThrow(() -> new ResourceNotFoundException("Question", "id", questionID));
+
+			mSDM.setDetail(questionDetails.getDetail());
+//			mSDM.setDatetime(questionDetails.getDatetime());
+			mSDM.setName(questionDetails.getName());
+
+			dataModelQuestion updateData = myRepository.save(mSDM); 
+			return updateData;
+	 
+		}
+
+		// Method to remove a question
+		@DeleteMapping("/question/{id}")
+		public ResponseEntity<?> deleteQuestion(@PathVariable(value = "id") Long questionID) {
+			dataModelQuestion mSDM = myRepository.findById(questionID)
+					.orElseThrow(() -> new ResourceNotFoundException("Question", "id", questionID));
+
+			myRepository.delete(mSDM);
+			return ResponseEntity.ok().build();
+
+		}
+
+		
 }

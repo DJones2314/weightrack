@@ -3,16 +3,17 @@ package com.jones.dave.model;
 import java.io.Serializable;
 import java.util.Date;
 
+
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "question")
+@Table(name = "answer")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = { "creationDate", "lastModified"}, allowGetters = true)
 
@@ -20,95 +21,79 @@ public class dataModelAnswer implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "answer_ID")
-	private int answer_ID;
+	@Column(name = "answerID")
+	private Long answerID;
 	
-	@NotBlank
-	@Column(name = "question_ID")
-	private int question_ID;
 	
-	@Lob
-	@NotBlank
-	@Column(name = "answer_detail")
-	private String answer_detail;
+	@Column(name = "questionID")
+	private Integer questionID;
 	
-	@Column(name = "answer_name")
-	private String answer_name;
-
-	@Column(name = "answer_email")
-	private String answer_email;
+	public dataModelAnswer() {
+	}
 	
-	@Column(name ="answer_datetime")
-	private String answer_datetime;
+	public dataModelAnswer(Long answerID, Integer questionID, String answerdetail, String answername, String answeremail) {
+		this.answerID = answerID;
+		this.questionID = questionID;
+		this.answerdetail = answerdetail;
+		this.answeremail = answeremail;
+		this.answername = answername;
+	}
+	 
 	
-	@Column(name = "answer_view")
-	private int answer_view;
 	
-	@Column(name = "answer_reply")
-	private int answer_reply;
-
-	public int getAnswer_ID() {
-		return answer_ID;
+	public dataModelAnswer(long l, Long questionID2, String string, String string2, String string3) {
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setAnswer_ID(int answer_ID) {
-		this.answer_ID = answer_ID;
+
+
+	@Column(name = "answerdetail")
+	private String answerdetail;
+	
+	@Column(name = "answername")
+	private String answername;
+
+	@Column(name = "answeremail")
+	private String answeremail;
+
+	public Long getAnswerID() {
+		return answerID;
 	}
 
-	public int getQuestion_ID() {
-		return question_ID;
+	public void setAnswerID(Long answerID) {
+		this.answerID = answerID;
 	}
 
-	public void setQuestion_ID(int question_ID) {
-		this.question_ID = question_ID;
+	public Integer getQuestionID() {
+		return questionID;
 	}
 
-	public String getAnswer_detail() {
-		return answer_detail;
+	public void setQuestionID(Integer questionID) {
+		this.questionID = questionID;
 	}
 
-	public void setAnswer_detail(String answer_detail) {
-		this.answer_detail = answer_detail;
+	public String getAnswerdetail() {
+		return answerdetail;
 	}
 
-	public String getAnswer_name() {
-		return answer_name;
+	public void setAnswerdetail(String answerdetail) {
+		this.answerdetail = answerdetail;
 	}
 
-	public void setAnswer_name(String answer_name) {
-		this.answer_name = answer_name;
+	public String getAnswername() {
+		return answername;
 	}
 
-	public String getAnswer_email() {
-		return answer_email;
+	public void setAnswername(String answername) {
+		this.answername = answername;
 	}
 
-	public void setAnswer_email(String answer_email) {
-		this.answer_email = answer_email;
+	public String getAnsweremail() {
+		return answeremail;
 	}
 
-	public String getAnswer_datetime() {
-		return answer_datetime;
-	}
-
-	public void setAnswer_datetime(String answer_datetime) {
-		this.answer_datetime = answer_datetime;
-	}
-
-	public int getAnswer_view() {
-		return answer_view;
-	}
-
-	public void setAnswer_view(int answer_view) {
-		this.answer_view = answer_view;
-	}
-
-	public int getAnswer_reply() {
-		return answer_reply;
-	}
-
-	public void setAnswer_reply(int answer_reply) {
-		this.answer_reply = answer_reply;
+	public void setAnsweremail(String answeremail) {
+		this.answeremail = answeremail;
 	}
 
 	
